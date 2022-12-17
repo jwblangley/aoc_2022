@@ -9,3 +9,21 @@ python3.10 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+
+## Running
+
+```bash
+python <day>/solution.py
+```
+
+## Testing
+
+```bash
+pytest [day]
+```
+
+## Linting
+
+```bash
+mypy [.|<day>]
+```
