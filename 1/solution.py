@@ -11,3 +11,6 @@ def sum_sections(xs: Iterator[str]) -> Generator[int, None, None]:
         total += int(x)
     if total != 0:
         yield total
+
+if __name__ == "__main__":
+    print(f"Largest number of calories per elf: {max(sum_sections(open('1/input.txt')))}")
