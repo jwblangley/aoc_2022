@@ -1,4 +1,4 @@
-from solution import sum_sections
+from solution_1 import sum_sections
 
 import pytest
 
