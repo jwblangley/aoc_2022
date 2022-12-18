@@ -1,3 +1,7 @@
+# Python
 venv
 __pycache__
 .mypy_cache
+
+# VS Code
+.vscode
