@@ -33,7 +33,7 @@ def _rpc_score_outcome(op_move: RPC, move: RPC) -> int:
 
 def rpc_scores(move_pairs: Iterable[str]) -> Generator[int, None, None]:
     for turn in move_pairs:
-        match turn.split(" "):
+        match turn.strip().split(" "):
             case [op_move_str, move_str]:
                 op_move = OPPONENT_CODES[op_move_str]
                 move = PLAYER_CODES[move_str]
