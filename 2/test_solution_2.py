@@ -34,6 +34,7 @@ def test_rpc_score(moves, exp):
     # THEN
     assert res == exp
 
+
 @pytest.mark.parametrize(
     "moves, exp",
     (
