@@ -7,6 +7,11 @@ class RPC(Enum):
     PAPER = 1
     SCISSORS = 2
 
+class Outcome(Enum):
+    LOSE = 0
+    DRAW = 3
+    WIN = 6
+
 
 OPPONENT_CODES = {
     "A": RPC.ROCK,
@@ -20,31 +25,49 @@ PLAYER_CODES = {
     "Z": RPC.SCISSORS,
 }
 
-LOSE, DRAW, WIN = [0, 3, 6]
+OUTCOME_CODES = {
+    "X": Outcome.LOSE,
+    "Y": Outcome.DRAW,
+    "Z": Outcome.WIN,
+}
 
 
 def _rpc_score_outcome(op_move: RPC, move: RPC) -> int:
     if op_move == move:
-        return DRAW
+        return Outcome.DRAW.value
     if move.value == (op_move.value + 1) % len(RPC):
-        return WIN
-    return LOSE
+        return Outcome.WIN.value
+    return Outcome.LOSE.value
+
+def _rpc_move_forced_outcome(op_move: RPC, forced_outcome: Outcome):
+    if forced_outcome == Outcome.DRAW:
+        return op_move
+    if forced_outcome == Outcome.WIN:
+        return RPC((op_move.value + 1) % len(RPC))
+    else:
+        return RPC((op_move.value - 1) % len(RPC))
 
 
-def rpc_scores(move_pairs: Iterable[str]) -> Generator[int, None, None]:
+def rpc_scores(move_pairs: Iterable[str], play_for_outcome: bool=False) -> Generator[int, None, None]:
     for turn in move_pairs:
         match turn.strip().split(" "):
             case [op_move_str, move_str]:
                 op_move = OPPONENT_CODES[op_move_str]
-                move = PLAYER_CODES[move_str]
-                yield _rpc_score_outcome(op_move, move) + move.value + 1
+                forced_outcome = OUTCOME_CODES[move_str]
+                print(op_move)
+                print(forced_outcome)
+                move = _rpc_move_forced_outcome(op_move, forced_outcome) if play_for_outcome else PLAYER_CODES[move_str]
+                print(move)
+                yield (forced_outcome.value if play_for_outcome else _rpc_score_outcome(op_move, move)) + move.value + 1
             case _:
                 raise RuntimeError("Invalid move pair")
 
 
-def rpc_score(move_pairs: Iterable[str]) -> int:
-    return sum(rpc_scores(move_pairs))
+def rpc_score(move_pairs: Iterable[str], play_for_outcome: bool=False) -> int:
+    return sum(rpc_scores(move_pairs, play_for_outcome=play_for_outcome))
 
 
 if __name__ == "__main__":
     print(f"Total score: {rpc_score(open('2/input.txt'))}")
+
+    print(f"Total score playing for outcome: {rpc_score(open('2/input.txt'), play_for_outcome=True)}")
