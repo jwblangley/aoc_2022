@@ -44,3 +44,7 @@ def rpc_scores(move_pairs: Iterable[str]) -> Generator[int, None, None]:
 
 def rpc_score(move_pairs: Iterable[str]) -> int:
     return sum(rpc_scores(move_pairs))
+
+
+if __name__ == "__main__":
+    print(f"Total score: {rpc_score(open('2/input.txt'))}")
