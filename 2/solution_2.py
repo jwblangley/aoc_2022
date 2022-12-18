@@ -34,9 +34,9 @@ def _rpc_score_outcome(op_move: RPC, move: RPC) -> int:
 def rpc_scores(move_pairs: Iterable[str]) -> Generator[int, None, None]:
     for turn in move_pairs:
         match turn.split(" "):
-            case [op_move, move]:
-                op_move = OPPONENT_CODES[op_move]
-                move = PLAYER_CODES[move]
+            case [op_move_str, move_str]:
+                op_move = OPPONENT_CODES[op_move_str]
+                move = PLAYER_CODES[move_str]
                 yield _rpc_score_outcome(op_move, move) + move.value + 1
             case _:
                 raise RuntimeError("Invalid move pair")
