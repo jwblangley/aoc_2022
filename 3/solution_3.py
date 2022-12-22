@@ -51,4 +51,4 @@ if __name__ == "__main__":
             get_priority(counter_to_char(get_intersection(*split_line(line.strip()))))
             for line in f
         )
-        print(f"Sum of priorities: {sum_priorities}")
+    print(f"Sum of priorities: {sum_priorities}")
