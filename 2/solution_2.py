@@ -41,7 +41,7 @@ def _rpc_score_outcome(op_move: RPC, move: RPC) -> int:
     return Outcome.LOSE.value
 
 
-def _rpc_move_forced_outcome(op_move: RPC, forced_outcome: Outcome):
+def _rpc_move_forced_outcome(op_move: RPC, forced_outcome: Outcome) -> RPC:
     if forced_outcome == Outcome.DRAW:
         return op_move
     if forced_outcome == Outcome.WIN:
