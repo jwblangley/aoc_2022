@@ -1,5 +1,9 @@
 from collections import Counter
 
+from typing import TypeVar, Iterator, Generator
+
+T = TypeVar("T")
+
 
 def get_intersection(a: str, b: str) -> Counter[str]:
     # More efficient would be to stop counting as soon as we get one match
@@ -24,6 +28,21 @@ def counter_to_char(c: Counter[str]) -> str:
 def split_line(line: str) -> tuple[str, str]:
     assert len(line) % 2 == 0, "Only even splits are allowed"
     return line[: len(line) // 2], line[len(line) // 2 :]
+
+
+def batch(
+    ts: Iterator[T], batch_size: int, assert_fits: bool = False
+) -> Generator[list[T], None, None]:
+    acc = list()
+    for t in ts:
+        acc.append(t)
+        if len(acc) == batch_size:
+            yield list(acc)
+            acc.clear()
+    if assert_fits and len(acc) > 0:
+        raise ValueError(f"Iterable does not fit into batches of {batch_size}")
+    if len(acc) > 0:
+        yield acc
 
 
 if __name__ == "__main__":

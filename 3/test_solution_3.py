@@ -1,6 +1,6 @@
 import pytest
 
-from solution_3 import get_intersection, get_priority
+from solution_3 import get_intersection, get_priority, batch
 
 
 @pytest.mark.parametrize(
@@ -101,3 +101,50 @@ def test_get_priority(char, value):
 
     # THEN
     assert res == value
+
+
+@pytest.mark.parametrize(
+    ("it", "n", "exp"),
+    [
+        ([1, 2, 3], 1, [[1], [2], [3]]),
+        ([1, 2, 3, 4], 2, [[1, 2], [3, 4]]),
+        ([1, 2, 3, 4], 3, [[1, 2, 3], [4]]),
+        ([1, 2, 3, 4, 5], 3, [[1, 2, 3], [4, 5]]),
+        ([1, 2, 3, 4, 5], 2, [[1, 2], [3, 4], [5]]),
+    ],
+)
+def test_batch(it, n, exp):
+    # GIVEN
+    """
+    it
+    n
+    exp
+    """
+
+    # WHEN
+    res = list(batch(iter(it), n))
+
+    # THEN
+    assert res == exp
+
+
+@pytest.mark.parametrize(
+    ("it", "n"),
+    [
+        ([1, 2, 3, 4], 3),
+        ([1, 2, 3, 4, 5], 3),
+        ([1, 2, 3, 4, 5], 2),
+        ([1, 2, 3, 4, 5], 4),
+    ],
+)
+def test_batch_overflow(it, n):
+    # GIVEN
+    """
+    it
+    n
+    """
+
+    # THEN
+    with pytest.raises(ValueError):
+        # WHEN
+        list(batch(iter(it), n, assert_fits=True))
