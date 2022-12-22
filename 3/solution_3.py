@@ -6,7 +6,7 @@ T = TypeVar("T")
 
 
 def get_intersection(a: str, b: str) -> Counter[str]:
-    # More efficient would be to stop counting as soon as we get one match
+    # More efficient would be to stop counting as soon as we get one match for our specific use case
     return Counter(a) & Counter(b)
 
 
