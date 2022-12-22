@@ -16,7 +16,7 @@ from solution_3 import get_intersection, get_priority
         (["abbc", "abbb"], "abb"),
         (["vJrwpWtwJgWr", "hcsFMMfFFhFp"], "p"),
         (["jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"], "LL"),
-    ]
+    ],
 )
 def test_get_intersect(strs, exp):
     # GIVEN
@@ -87,7 +87,7 @@ def test_get_intersect(strs, exp):
         ("X", 50),
         ("Y", 51),
         ("Z", 52),
-    ]
+    ],
 )
 def test_get_priority(char, value):
     # GIVEN
