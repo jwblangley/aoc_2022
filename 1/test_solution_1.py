@@ -4,7 +4,7 @@ import pytest
 
 
 @pytest.mark.parametrize(
-    "xs, exp",
+    ("xs", "exp"),
     (
         (["1"], [1]),
         ([" 1 "], [1]),

@@ -4,7 +4,7 @@ from solution_2 import rpc_score
 
 
 @pytest.mark.parametrize(
-    "moves, exp",
+    ("moves", "exp"),
     (
         (["A X"], 4),
         (["A Y"], 8),
@@ -36,7 +36,7 @@ def test_rpc_score(moves, exp):
 
 
 @pytest.mark.parametrize(
-    "moves, exp",
+    ("moves", "exp"),
     (
         (["A X"], 3),
         (["A Y"], 4),
