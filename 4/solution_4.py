@@ -11,4 +11,8 @@ class Range(NamedTuple):
 
 
 def is_proper_subset_range(*rs: Range) -> bool:
-    pass
+    minimin = min(*rs, key=(lambda r: r.lower)).lower
+    maximax = max(*rs, key=(lambda r: r.upper)).upper
+
+    # Need to check equality since there may be shared boundaries
+    return any(r == Range(minimin, maximax) for r in rs)
