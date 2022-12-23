@@ -41,3 +41,7 @@ if __name__ == "__main__":
             1 for line in f if is_proper_subset_range(*line_to_ranges(line))
         )
     print(f"Num total overlaps: {num_total_overlaps}")
+
+    with open("4/input.txt") as f:
+        num_overlaps = sum(1 for line in f if overlaps(*line_to_ranges(line)))
+    print(f"Num overlaps: {num_overlaps}")
