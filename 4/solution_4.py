@@ -19,7 +19,12 @@ def is_proper_subset_range(*rs: Range) -> bool:
 
 
 def overlaps(*rs: Range) -> bool:
-    pass
+    for r in rs:
+        other_rs = list(rs)
+        other_rs.remove(r)
+        if any(other_r.lower <= r.upper <= other_r.upper for other_r in other_rs):
+            return True
+    return False
 
 
 def line_to_ranges(line: str) -> tuple[Range, Range]:
