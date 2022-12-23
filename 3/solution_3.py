@@ -53,4 +53,11 @@ if __name__ == "__main__":
             get_priority(counter_to_char(get_intersection(*split_line(line.strip()))))
             for line in f
         )
-    print(f"Sum of priorities: {sum_priorities}")
+    print(f"1: Sum of priorities: {sum_priorities}")
+
+    with open("3/input.txt") as f:
+        sum_priorities = sum(
+            get_priority(counter_to_char(get_intersection(*b)))
+            for b in batch((line.strip() for line in f), 3, assert_fits=True)
+        )
+    print(f"2: Sum of priorities: {sum_priorities}")
