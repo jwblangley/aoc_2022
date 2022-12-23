@@ -16,17 +16,34 @@ from solution_3 import get_intersection, get_priority, batch
         (["abbc", "abbb"], "abb"),
         (["vJrwpWtwJgWr", "hcsFMMfFFhFp"], "p"),
         (["jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"], "LL"),
+        (["aa", "ab", "ac"], "a"),
+        (
+            [
+                "vJrwpWtwJgWrhcsFMMfFFhFp",
+                "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+                "PmmdzqPrVvPwwTWBwg",
+            ],
+            "r",
+        ),
+        (
+            [
+                "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+                "ttgJtRGJQctTZtZT",
+                "CrZsJsPPZsGzwwsLwLmpwMDw",
+            ],
+            "Z",
+        ),
     ],
 )
 def test_get_intersect(strs, exp):
     # GIVEN
-    a, b = strs
     """
+    strs
     exp
     """
 
     # WHEN
-    res = get_intersection(a, b)
+    res = get_intersection(*strs)
 
     # THEN
     assert sorted(res.elements()) == sorted(exp)
