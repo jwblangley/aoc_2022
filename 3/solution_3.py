@@ -1,13 +1,15 @@
 from collections import Counter
+from functools import reduce
+import operator
 
 from typing import TypeVar, Iterator, Generator
 
 T = TypeVar("T")
 
 
-def get_intersection(a: str, b: str) -> Counter[str]:
+def get_intersection(*ss: str) -> Counter[str]:
     # More efficient would be to stop counting as soon as we get one match for our specific use case
-    return Counter(a) & Counter(b)
+    return reduce(operator.and_, (Counter(s) for s in ss))
 
 
 def get_priority(l: str) -> int:
