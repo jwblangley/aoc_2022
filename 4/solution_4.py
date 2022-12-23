@@ -18,6 +18,10 @@ def is_proper_subset_range(*rs: Range) -> bool:
     return any(r == Range(minimin, maximax) for r in rs)
 
 
+def overlaps(*rs: Range) -> bool:
+    pass
+
+
 def line_to_ranges(line: str) -> tuple[Range, Range]:
     match [r.split("-") for r in line.strip().split(",")]:
         case [[ll, lu], [rl, ru]]:
